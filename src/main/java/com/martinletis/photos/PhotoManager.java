@@ -18,6 +18,7 @@ import com.google.common.base.Joiner;
 import com.google.photos.library.v1.PhotosLibraryClient;
 import com.google.photos.library.v1.PhotosLibrarySettings;
 import com.google.photos.library.v1.internal.InternalPhotosLibraryClient.ListAlbumsPagedResponse;
+import com.google.photos.library.v1.proto.ListAlbumsRequest;
 import com.google.photos.types.proto.Album;
 import java.io.File;
 import java.io.FileReader;
@@ -80,7 +81,8 @@ public class PhotoManager {
             .build();
 
     try (PhotosLibraryClient client = PhotosLibraryClient.initialize(settings)) {
-      ListAlbumsPagedResponse response = client.listAlbums();
+      ListAlbumsPagedResponse response =
+          client.listAlbums(ListAlbumsRequest.newBuilder().setPageSize(50).build());
       for (Album album : response.iterateAll()) {
         System.out.println(album);
       }
