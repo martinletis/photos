@@ -18,8 +18,11 @@ import com.google.common.base.Joiner;
 import com.google.photos.library.v1.PhotosLibraryClient;
 import com.google.photos.library.v1.PhotosLibrarySettings;
 import com.google.photos.library.v1.internal.InternalPhotosLibraryClient.ListAlbumsPagedResponse;
+import com.google.photos.library.v1.internal.InternalPhotosLibraryClient.SearchMediaItemsPagedResponse;
 import com.google.photos.library.v1.proto.ListAlbumsRequest;
+import com.google.photos.library.v1.proto.SearchMediaItemsRequest;
 import com.google.photos.types.proto.Album;
+import com.google.photos.types.proto.MediaItem;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -81,10 +84,19 @@ public class PhotoManager {
             .build();
 
     try (PhotosLibraryClient client = PhotosLibraryClient.initialize(settings)) {
-      ListAlbumsPagedResponse response =
-          client.listAlbums(ListAlbumsRequest.newBuilder().setPageSize(50).build());
-      for (Album album : response.iterateAll()) {
-        System.out.println(album);
+      if (args.length == 0) {
+        ListAlbumsPagedResponse response =
+            client.listAlbums(ListAlbumsRequest.newBuilder().setPageSize(50).build());
+        for (Album album : response.iterateAll()) {
+          System.out.println(album);
+        }
+      } else {
+        SearchMediaItemsPagedResponse searchMediaItems =
+            client.searchMediaItems(
+                SearchMediaItemsRequest.newBuilder().setAlbumId(args[0]).setPageSize(100).build());
+        for (MediaItem mediaItem : searchMediaItems.iterateAll()) {
+          System.out.println(mediaItem.getFilename());
+        }
       }
     }
   }
