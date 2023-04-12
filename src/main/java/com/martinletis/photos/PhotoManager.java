@@ -43,7 +43,8 @@ public class PhotoManager {
 
     File dataDirectory =
         new File(
-            Joiner.on(File.separator).join(System.getProperty("user.home"), "tmp", "datastore"));
+            Joiner.on(File.separator)
+                .join(System.getProperty("user.home"), "tmp", APP_NAME, "datastore"));
 
     AuthorizationCodeFlow flow =
         new GoogleAuthorizationCodeFlow.Builder(
