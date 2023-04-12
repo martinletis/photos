@@ -3,18 +3,13 @@
   <head>
     <meta charset='utf-8'>
     <title>Photo Manager</title>
-
-    <!--script src="https://apis.google.com/js/api.js" async defer onload="loadClient()"></script-->
-    <!--script src="https://accounts.google.com/gsi/client" async defer onload="loadTokenClient()"></script-->
-    
-    <!--script src='https://apis.google.com/js/api.js' async defer></script-->
-
-    <!--script src='https://accounts.google.com/gsi/client' async defer></script-->
-
     <script src='photos.js'></script>
-    <script src='https://accounts.google.com/gsi/client' onload='initClient()' async defer></script>
+    <script src='https://accounts.google.com/gsi/client' onload='initAuth()' async defer></script>
   </head>
   <body>
+    <table id='photos'>
+      <tr><th>Title</th><th>Items</th><th>Cover Photo</th></tr>
+    </table>
   </body>
 </html>
 
