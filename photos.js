@@ -1,3 +1,4 @@
+// https://developers.google.com/photos/library/reference/rest/v1/mediaItems/search
 function searchMediaItems(token, id, nextPageToken) {
   const url = new URL('https://photoslibrary.googleapis.com/v1/mediaItems:search');
   url.searchParams.append('albumId', id);
