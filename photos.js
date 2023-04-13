@@ -29,32 +29,32 @@ function listAlbums(token, nextPageToken) {
   fetch(url, {headers: {Authorization: 'Bearer ' + token}})
     .then(response => response.json())
     .then(data => {
-      var table = document.getElementById('photos');
+      const table = document.getElementById('photos');
       data.albums.forEach(album => {
-        var title = document.createElement('a');
+        const title = document.createElement('a');
         title.appendChild(document.createTextNode(album.title));
         title.href = album.productUrl;
         title.target = '_blank';
 
-        var id = document.createElement('a');
+        const id = document.createElement('a');
         id.appendChild(document.createTextNode("details"));
         id.href = '#';
         id.onclick = function(){
           searchMediaItems(token, album.id)
         };
         
-        var img = document.createElement('img');
+        const img = document.createElement('img');
         img.alt = album.coverPhotoMediaItemId;
         img.src = album.coverPhotoBaseUrl + '=w128-h128';
 
-        var cover = document.createElement('a');
+        const cover = document.createElement('a');
         cover.appendChild(img);
         cover.href = album.coverPhotoBaseUrl;
         cover.target = '_blank';
         
-        var row = table.insertRow();
+        const row = table.insertRow();
         
-        var cell = row.insertCell();
+        const cell = row.insertCell();
         cell.appendChild(title);
         cell.appendChild(document.createTextNode(" ("));
         cell.appendChild(id);
