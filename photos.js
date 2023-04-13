@@ -84,4 +84,3 @@ function initAuth() {
   
   client.requestAccessToken();
 }  
-
