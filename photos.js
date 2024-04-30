@@ -81,6 +81,8 @@ function initAuth() {
         listAlbums(tokenResponse.access_token);
       }
     },
+    prompt: '',
+    enable_granular_consent: false,
   });
   
   client.requestAccessToken();
