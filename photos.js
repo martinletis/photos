@@ -83,6 +83,7 @@ function initAuth() {
     },
     prompt: '',
     enable_granular_consent: false,
+    error_callback: error => console.warn(JSON.stringify(error)),
   });
   
   client.requestAccessToken();
