@@ -73,7 +73,7 @@ function initAuth() {
   client = google.accounts.oauth2.initTokenClient({
     client_id: '575230163-oagks79i1pa00ndbtrab8koio7rmtfqt.apps.googleusercontent.com',
     scope: 'https://www.googleapis.com/auth/photoslibrary.readonly',
-    callback: (tokenResponse) => {
+    callback: tokenResponse => {
       const url = new URL(window.location.href);
       if (url.searchParams.has('id')) {
         listAlbum(tokenResponse.access_token, url.searchParams.get('id'));
